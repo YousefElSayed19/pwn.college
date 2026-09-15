@@ -213,3 +213,168 @@
 
 @ Password:
 @ then password is qwFIjJIWqKjxN0cA
+
+@ --------------------------------------------------------
+
+Disassembly of section .text:
+
+0000000000401000 <_start>:
+    401000:       48 8b 7c 24 10          mov    rdi,QWORD PTR [rsp+0x10]
+    401005:       66 8b 07                mov    ax,WORD PTR [rdi]
+    401008:       66 3d 35 7a             cmp    ax,0x7a35
+    40100c:       0f 85 b8 00 00 00       jne    4010ca <fail>
+    401012:       66 8b 47 02             mov    ax,WORD PTR [rdi+0x2]
+    401016:       66 3d 59 47             cmp    ax,0x4759
+    40101a:       0f 85 aa 00 00 00       jne    4010ca <fail>
+    401020:       66 8b 47 04             mov    ax,WORD PTR [rdi+0x4]
+    401024:       66 3d 38 72             cmp    ax,0x7238
+    401028:       0f 85 9c 00 00 00       jne    4010ca <fail>
+    40102e:       66 8b 47 06             mov    ax,WORD PTR [rdi+0x6]
+    401032:       66 3d 34 70             cmp    ax,0x7034
+    401036:       0f 85 8e 00 00 00       jne    4010ca <fail>
+    40103c:       66 8b 47 08             mov    ax,WORD PTR [rdi+0x8]
+    401040:       66 3d 74 42             cmp    ax,0x4274
+    401044:       0f 85 80 00 00 00       jne    4010ca <fail>
+    40104a:       66 8b 47 0a             mov    ax,WORD PTR [rdi+0xa]
+    40104e:       66 3d 6d 43             cmp    ax,0x436d
+    401052:       75 76                   jne    4010ca <fail>
+    401054:       66 8b 47 0c             mov    ax,WORD PTR [rdi+0xc]
+    401058:       66 3d 75 6f             cmp    ax,0x6f75
+    40105c:       75 6c                   jne    4010ca <fail>
+    40105e:       66 8b 47 0e             mov    ax,WORD PTR [rdi+0xe]
+    401062:       66 3d 67 73             cmp    ax,0x7367
+    401066:       75 62                   jne    4010ca <fail>
+    401068:       c6 04 24 2f             mov    BYTE PTR [rsp],0x2f
+    40106c:       c6 44 24 01 66          mov    BYTE PTR [rsp+0x1],0x66
+    401071:       c6 44 24 02 6c          mov    BYTE PTR [rsp+0x2],0x6c
+    401076:       c6 44 24 03 61          mov    BYTE PTR [rsp+0x3],0x61
+    40107b:       c6 44 24 04 67          mov    BYTE PTR [rsp+0x4],0x67
+    401080:       c6 44 24 05 00          mov    BYTE PTR [rsp+0x5],0x0
+    401085:       48 89 e7                mov    rdi,rsp
+    401088:       48 c7 c6 00 00 00 00    mov    rsi,0x0
+    40108f:       48 c7 c0 02 00 00 00    mov    rax,0x2
+    401096:       0f 05                   syscall
+    401098:       48 89 c7                mov    rdi,rax
+    40109b:       48 89 e6                mov    rsi,rsp
+    40109e:       48 c7 c2 00 01 00 00    mov    rdx,0x100
+    4010a5:       48 c7 c0 00 00 00 00    mov    rax,0x0
+    4010ac:       0f 05                   syscall
+    4010ae:       48 89 c2                mov    rdx,rax
+    4010b1:       48 c7 c7 01 00 00 00    mov    rdi,0x1
+    4010b8:       48 c7 c0 01 00 00 00    mov    rax,0x1
+    4010bf:       0f 05                   syscall
+    4010c1:       48 c7 c0 3c 00 00 00    mov    rax,0x3c
+    4010c8:       0f 05                   syscall
+
+00000000004010ca <fail>:
+    4010ca:       48 c7 c0 3c 00 00 00    mov    rax,0x3c
+    4010d1:       0f 05                   syscall
+
+
+
+@     1. First word
+@ cmp ax, 0x7a35
+
+@ Bytes:
+@ 7a 35
+
+@ Reverse:
+@ 35 7a
+
+@ ASCII:
+@ 5z
+
+
+@ 2. Second word
+@ cmp ax, 0x4759
+
+@ Bytes:
+@ 47 59
+
+@ Reverse:
+@ 59 47
+
+@ ASCII:
+@ YG
+
+
+@ 3. Third word
+@ cmp ax, 0x7238
+
+@ Bytes:
+@ 72 38
+
+@ Reverse:
+@ 38 72
+
+@ ASCII:
+@ 8r
+
+
+@ 4. Fourth word
+@ cmp ax, 0x7034
+
+@ Bytes:
+@ 70 34
+
+@ Reverse:
+@ 34 70
+
+@ ASCII:
+@ 4p
+
+
+@ 5. Fifth word
+@ cmp ax, 0x4274
+
+@ Bytes:
+@ 42 74
+
+@ Reverse:
+@ 74 42
+
+@ ASCII:
+@ tB
+
+
+@ 6. Sixth word
+@ cmp ax, 0x436d
+
+@ Bytes:
+@ 43 6d
+
+@ Reverse:
+@ 6d 43
+
+@ ASCII:
+@ mC
+
+
+@ 7. Seventh word
+@ cmp ax, 0x6f75
+
+@ Bytes:
+@ 6f 75
+
+@ Reverse:
+@ 75 6f
+
+@ ASCII:
+@ uo
+
+
+@ 8. Eighth word
+@ cmp ax, 0x7367
+
+@ Bytes:
+@ 73 67
+
+@ Reverse:
+@ 67 73
+
+@ ASCII:
+@ gs
+
+
+@ Password:
+@ 5zYG8r4ptBmCuogs
