@@ -1,7 +1,6 @@
 CODE:
 .intel_syntax noprefix
 .global _start
-
 _start:
     mov rax, rsp
     mov al, byte ptr [rax]
