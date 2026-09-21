@@ -27,9 +27,8 @@ _start:
     mov rax, 49
     syscall
 
-    # listen(sockfd, 10)
-    # rdi still contains socket fd
-    mov rsi, 10
+    # listen(sockfd, 0)
+    mov rsi, 0
     mov rax, 43
     syscall
 
