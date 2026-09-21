@@ -30,7 +30,7 @@ _start:
 
     # listen(sockfd, 0)
     mov rdi, r12
-    mov rsi, 0
+    xor rsi, rsi
     mov rax, 50
     syscall
 
@@ -44,35 +44,30 @@ _start:
     # Save client socket
     mov r13, rax
 
-    # Buffer for HTTP request
+    # Request buffer
     sub rsp, 1024
     mov r14, rsp
 
-    # read(client_fd, buffer, 1024)
+    # read(client_fd, request, 1024)
     mov rdi, r13
     mov rsi, r14
     mov rdx, 1024
     xor rax, rax
     syscall
 
-    # HTTP request:
-    # GET /path HTTP/1.0
-    #
-    # Path starts at buffer + 4
+    # Path starts after "GET "
     lea r15, [r14 + 4]
 
-    # Find the space after the path
+    # Find space after path
     mov rbx, r15
 
 find_end:
     cmp byte ptr [rbx], 32
     je found_end
-
     inc rbx
     jmp find_end
 
 found_end:
-    # Null terminate the path
     mov byte ptr [rbx], 0
 
     # open(path, O_RDONLY, 0)
@@ -82,29 +77,36 @@ found_end:
     mov rax, 2
     syscall
 
-    # Save file descriptor
+    # Save file fd
     mov r12, rax
 
-    # Read file into buffer
+    # Read file
     mov rdi, r12
     mov rsi, r14
     mov rdx, 1024
     xor rax, rax
     syscall
 
-    # Save number of bytes read
+    # Save file size
     mov rbx, rax
 
-    # write(client_fd, buffer, bytes_read)
+    # Close file FIRST
+    mov rdi, r12
+    mov rax, 3
+    syscall
+
+    # write(client, "HTTP/1.0 200 OK\r\n\r\n", 19)
+    mov rdi, r13
+    lea rsi, [rip + response]
+    mov rdx, 19
+    mov rax, 1
+    syscall
+
+    # write(client, file_content, file_size)
     mov rdi, r13
     mov rsi, r14
     mov rdx, rbx
     mov rax, 1
-    syscall
-
-    # close(file)
-    mov rdi, r12
-    mov rax, 3
     syscall
 
     # close(client)
@@ -118,3 +120,6 @@ found_end:
     syscall
 
 .section .data
+
+response:
+    .ascii "HTTP/1.0 200 OK\r\n\r\n"
