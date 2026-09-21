@@ -63,3 +63,5 @@ The final stage combines:
 - HTTP `200 OK` responses
 
 The purpose of keeping every stage as a separate file is to make the development process easier to follow and to show how the server was gradually built from basic Linux syscalls into a functional concurrent HTTP server.
+<img width="1835" height="848" alt="image" src="https://github.com/user-attachments/assets/3ad754b4-6ab0-462a-9be0-faaebca90d0c" />
+
