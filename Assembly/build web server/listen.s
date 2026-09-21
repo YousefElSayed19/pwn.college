@@ -29,7 +29,7 @@ _start:
 
     # listen(sockfd, 0)
     mov rsi, 0
-    mov rax, 43
+    mov rax, 50
     syscall
 
     # exit(0)
